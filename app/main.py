@@ -64,7 +64,7 @@ def update_order(order_id: int, order: Order, db: Session = Depends(get_db)):
 
 @app.delete("/{order_id}")
 def delete_order(order_id: int, db: Session = Depends(get_db)):
-    order_model = db.query(models.Order).filter(models.Order.id == order_id).first()
+    order_model = db.query(models.Order).filter(models.Order.order_id == order_id).first()
     if order_model is None:
         raise HTTPException(
             status_code=404,
@@ -128,7 +128,7 @@ def update_order_item(order_id: int, order_item: Order_item, db: Session = Depen
 
 @app.delete("/{order_id}/item")
 def delete_order_item(order_id: int, db: Session = Depends(get_db)):
-    order_model = db.query(models.Order).filter(models.Order.id == order_id).first()
+    order_model = db.query(models.Order_item).filter(models.Order_item.order_id == order_id).first()
 
     if order_model is None:
         raise HTTPException(
